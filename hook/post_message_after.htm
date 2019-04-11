@@ -1,6 +1,6 @@
-<input type="hidden" name="doctype" value="0">
-<script src="plugin/ph_ckeditor/ckeditor/translations/zh-cn.js?<?php echo time();?>"></script>
+<input type="hidden" name="doctype" value="2">
 <script>
+
     class UploadAdapter {
         constructor(loader) {
             this.loader = loader;
@@ -41,20 +41,9 @@
         abort() {
         }
     }
-    
+
     window.onload = function(){
         ClassicEditor.create(document.querySelector("#message"),{
-            heading: {
-                options: [
-                    { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
-                    { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
-                    { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' },
-                    { model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3' },
-                    { model: 'heading4', view: 'h4', title: 'Heading 4', class: 'ck-heading_heading4' },
-                    { model: 'heading5', view: 'h5', title: 'Heading 5', class: 'ck-heading_heading5' },
-                    { model: 'heading6', view: 'h6', title: 'Heading 6', class: 'ck-heading_heading6' }
-                ]
-            },
             // toolbar: {
             //     items: ["undo", "redo", "bold", "italic", "blockQuote", "ckfinder", "imageTextAlternative", "imageUpload", "heading", "imageStyle:full", "imageStyle:side", "link", "numberedList", "bulletedList", "mediaEmbed", "insertTable", "tableColumn", "tableRow", "mergeTableCells"]
             // },
@@ -68,6 +57,10 @@
         })
             .then(editor => {
                 myEditor = editor;
+
+                // console.log(myEditor)
+
+                // console.log(Array.from( editor.ui.componentFactory.names() ));
 
                 // 加载图片上传适配器
                 // myEditor.plugins.get('FileRepository').createUploadAdapter = (loader)=>{

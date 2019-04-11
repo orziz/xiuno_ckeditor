@@ -1,0 +1,12 @@
+<?php
+    $ckeditor_config = kv_get('ckeditor_config');
+?>
+<script src="plugin/ph_ckeditor/ckeditor/ckeditor.js?<?php echo time();?>"></script>
+<script>
+    console.info('ph_ckeditor:::编辑器封装自 ckeditor5(https://ckeditor.com)，编辑器所有者为 ckeditor5 制作团队');
+    console.info('ph_ckeditor:::图片上传使用 editmd(https://github.com/GamemakerChina/gmchina_xiuno_editormd) 的php代码（实在不想重写了）');
+    console.info('ph_ckeditor:::封装者：子不语\n\t\t\t\t\t\temail：1063614727@qq.com\n\t\t\t\t\t\tQQ：1063614727\n\t\t\t\t\t\tblog：https://orzzz.org\n\t\t\t\t\t\tgithub：https://github.com/zibuyuchn\n\t\t\t\t\t\t项目github：https://github.com/zibuyuchn/xiuno_ckeditor');
+</script>
+<style>
+    <?php echo $ckeditor_config['style']; ?>
+</style>

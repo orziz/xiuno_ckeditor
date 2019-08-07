@@ -1,4 +1,6 @@
 <input type="hidden" name="doctype" value="2">
+<script src="plugin/ph_ckeditor/ckeditor/ckeditor.js?<?php echo time();?>"></script>
+<script src="plugin/ph_ckeditor/ckeditor/translations/zh-cn.js?<?php echo time();?>"></script>
 <script>
 
     class UploadAdapter {
@@ -42,7 +44,7 @@
         }
     }
 
-    window.onload = function(){
+    // window.onload = function(){
         ClassicEditor.create(document.querySelector("#message"),{
             // toolbar: {
             //     items: ["undo", "redo", "bold", "italic", "blockQuote", "ckfinder", "imageTextAlternative", "imageUpload", "heading", "imageStyle:full", "imageStyle:side", "link", "numberedList", "bulletedList", "mediaEmbed", "insertTable", "tableColumn", "tableRow", "mergeTableCells"]
@@ -69,12 +71,33 @@
 
                 // 实时更新编辑内容
                 myEditor.model.document.on('change:data', function () {
-                    document.querySelector("#message").innerHTML = myEditor.getData();
+                    // console.log(myEditor);
+                    // console.log(myEditor.getData())
+                    let _arr = myEditor.getData().split("\n\n");
+                    console.log(myEditor.getData().split("\n\n"))
+                    for (let i = 0; i < _arr.length; i++) {
+                        console.log(_arr[i])
+                        if (_arr[i][0] == '|' && _arr[i][_arr[i].length-1] == "|") {
+                            if (_arr[i].indexOf('---') == -1) {
+                                _arr2 = _arr[i].split("\n");
+                                _arr3 = _arr2[0].split(" | ");
+                                console.log('-->',_arr2[0].split("\t").length);
+                                let _td = '|';
+                                for (let k = 0; k < _arr3.length; k++) {
+                                    _td += ' -------- |'
+                                }
+                                _arr2.splice(1,0,_td);
+                                _arr[i] = _arr2.join("\n");
+                            }
+                        }
+                    }
+                    console.log(_arr)
+                    document.querySelector("#message").innerHTML = _arr.join("\n\n");
                     // $("#" + editorId).val(editor.getData());
                 });
             })
             .catch(error => {
                 console.error(error);
             });
-    }
+    // }
 </script>

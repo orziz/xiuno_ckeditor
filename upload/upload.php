@@ -23,10 +23,11 @@ $path     = getcwd() . DIRECTORY_SEPARATOR;
 $url      = $_SERVER["REQUEST_SCHEME"] .'://'.$_SERVER['HTTP_HOST'] . '/';
 // $savePath = realpath($path . '../../../../upload/images/'.$attach['filename']) . DIRECTORY_SEPARATOR;
 $_time = date('Ym');
-$savePath = $path . '../../../upload/images/'.$_time.DIRECTORY_SEPARATOR;
+$savePath = $path . '../../../upload/attach/'.$_time.DIRECTORY_SEPARATOR;
 if (!file_exists($savePath)) $_mk = mkdir($savePath);
 
-$saveURL  = $url . 'upload/images/'.$_time.DIRECTORY_SEPARATOR;
+// $saveURL  = $url . 'upload/attach/'.$_time.DIRECTORY_SEPARATOR;
+$saveURL  = 'upload/attach/'.$_time.DIRECTORY_SEPARATOR;
 
 $formats  = array(
     'image' => array('gif', 'jpg', 'jpeg', 'png', 'bmp')
@@ -36,7 +37,7 @@ $name = 'upload';
 
 if (isset($_FILES[$name]))
 {
-    $imageUploader = new EditorMdUploader($savePath, $saveURL, $formats['image'], 1, 'H_i_s');  // Ymdhis表示按日期生成文件名，利用date()函数
+    $imageUploader = new EditorMdUploader($savePath, $saveURL, $formats['image'], 1, 'Y_m_d_H_i_s');  // Ymdhis表示按日期生成文件名，利用date()函数
     
     $imageUploader->config(array(
         'maxSize' => 8192,        // 允许上传的最大文件大小，以KB为单位，默认值为1024

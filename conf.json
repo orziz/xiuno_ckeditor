@@ -1,7 +1,7 @@
 {
     "name": "CKEditor",
     "brief": "编辑器由 <a href='https://orzzz.org' target='_blank'>子不语</a> 整合自 <a href='https://ckeditor.com' target='_blank'>ckeditor5</a><br />QQ：1063614727<br />项目地址：<a href='https://github.com/ZiBuYuCHN/xiuno_ckeditor' target='_blank'>https://github.com/ZiBuYuCHN/xiuno_ckeditor</a>",
-    "version": "1.1",
+    "version": "1.2",
     "bbs_version": "4.0",
     "installed": 0,
     "enable": 0,

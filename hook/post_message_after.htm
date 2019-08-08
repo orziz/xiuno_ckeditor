@@ -3,6 +3,26 @@
 <script src="plugin/ph_ckeditor/ckeditor/translations/zh-cn.js?<?php echo time();?>"></script>
 <script>
 
+function htmlDecode (text){
+ 
+    //1.首先动态创建一个容器标签元素，如DIV
+
+    var temp = document.createElement("div");
+
+    //2.然后将要转换的字符串设置为这个元素的innerHTML(ie，火狐，google都支持)
+
+    temp.innerHTML = text;
+
+    //3.最后返回这个元素的innerText(ie支持)或者textContent(火狐，google支持)，即得到经过HTML解码的字符串了。
+
+    var output = temp.innerText || temp.textContent;
+
+    temp = null;
+
+    return output;
+
+}
+
     class UploadAdapter {
         constructor(loader) {
             this.loader = loader;
@@ -101,13 +121,25 @@
                     let _temp = document.querySelector("#message").innerHTML;
                     if (!_temp) return;
                     // console.log(_temp)
+                    _temp = htmlDecode(_temp)
+                    // console.log(_ckeditTemp)
                     if (_temp != _ckeditTemp) {
+                        // console.log('不一样')
                         _temp = _temp.split("\n");
                         _temp = _temp.join('\n\n');
                         // console.log(_temp)
                         myEditor.setData(_temp)
                     }
                 })
+
+                // if (window.smms_cpave) {
+                    window.KindEditor = {}
+                    KindEditor.insertHtml = (t,html) => {
+                        // console.log('我被执行了')
+                        // myEditor.setData(myEditor.getData()+html)
+                        document.querySelector("#message").innerHTML += html;
+                    } 
+                // }
             })
             .catch(error => {
                 console.error(error);

@@ -44,6 +44,8 @@
         }
     }
 
+    let _ckeditTemp = "";
+
     // window.onload = function(){
         ClassicEditor.create(document.querySelector("#message"),{
             // toolbar: {
@@ -92,9 +94,16 @@
                         }
                     }
                     console.log(_arr)
-                    document.querySelector("#message").innerHTML = _arr.join("\n\n");
+                    document.querySelector("#message").innerHTML = _ckeditTemp = _arr.join("\n\n");
                     // $("#" + editorId).val(editor.getData());
                 });
+
+                document.querySelector("#message").addEventListener('input', function(e) {
+                    let _temp = document.querySelector("#message").innerHTML;
+                    if (_temp != _ckeditTemp) {
+                        myEditor.setData(_temp.split("\n").join('\n\n'))
+                    }
+                })
             })
             .catch(error => {
                 console.error(error);

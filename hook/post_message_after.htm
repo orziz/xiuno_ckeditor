@@ -99,6 +99,7 @@
                 });
 
                 document.querySelector("#message").addEventListener('input', function(e) {
+                    console.log('#message 改变')
                     let _temp = document.querySelector("#message").innerHTML;
                     if (_temp != _ckeditTemp) {
                         myEditor.setData(_temp.split("\n").join('\n\n'))

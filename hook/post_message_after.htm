@@ -76,9 +76,7 @@
                     // console.log(myEditor);
                     // console.log(myEditor.getData())
                     let _arr = myEditor.getData().split("\n\n");
-                    console.log(myEditor.getData().split("\n\n"))
                     for (let i = 0; i < _arr.length; i++) {
-                        console.log(_arr[i])
                         if (_arr[i][0] == '|' && _arr[i][_arr[i].length-1] == "|") {
                             if (_arr[i].indexOf('---') == -1) {
                                 _arr2 = _arr[i].split("\n");
@@ -93,16 +91,21 @@
                             }
                         }
                     }
-                    console.log(_arr)
+                    // console.log(_arr)
                     document.querySelector("#message").innerHTML = _ckeditTemp = _arr.join("\n\n");
                     // $("#" + editorId).val(editor.getData());
                 });
 
-                document.querySelector("#message").addEventListener('input', function(e) {
-                    console.log('#message 改变')
+                document.querySelector("#message").addEventListener('DOMSubtreeModified', function(e) {
+                    // console.log('#message 改变')
                     let _temp = document.querySelector("#message").innerHTML;
+                    if (!_temp) return;
+                    // console.log(_temp)
                     if (_temp != _ckeditTemp) {
-                        myEditor.setData(_temp.split("\n").join('\n\n'))
+                        _temp = _temp.split("\n");
+                        _temp = _temp.join('\n\n');
+                        // console.log(_temp)
+                        myEditor.setData(_temp)
                     }
                 })
             })
